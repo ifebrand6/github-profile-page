@@ -326,6 +326,7 @@ html, body {
     min-height: 28px;
     display: flex;
     padding: 0 12px 0 12px;
+    margin-right: 9em;
 }
 .navbar .nav-item.search .search-box span.slash-holder {
     display: flex;
@@ -395,6 +396,7 @@ html, body {
     max-width: 1216px;
     display: flex;
     justify-content: center;
+    padding-top: 7px;
 }
 
 .sub-nav-sticky-container .sticky-profile-image-holder {
@@ -530,6 +532,8 @@ html, body {
     color: #24292e;
     line-height: 20px;
     min-width: 170px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .repo-filter-container .search-input-holder input:focus {
@@ -540,6 +544,7 @@ html, body {
 .repo-filter-container  .buttons-holder .button {
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .repo-filter-container  .buttons-holder .button:first-child {
@@ -548,10 +553,11 @@ html, body {
 
 .repo-filter-container  .buttons-holder .button:last-child {
     margin-left: 16px;
+    font-weight: 600;
 }
 
 .repo-filter-container  .buttons-holder .button .category {
-    font-weight: 400;
+    font-weight: 600;
     opacity: .75;
     margin-right: 4px;
 }
@@ -908,6 +914,7 @@ html, body {
     cursor: pointer;
     margin-right: 24px;
     vertical-align: text-bottom;
+    margin: 16px 7em 0px 7em;
 }
 
 .footer svg.octicon-mark-github:hover {
@@ -915,12 +922,12 @@ html, body {
 }
 
 .footer .footer-links-list {
-   padding: 0;
-   display: flex;
-   flex-grow: 1;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   list-style-type: none;
+padding: 0;
+display: flex;
+flex-grow: 1;
+justify-content: space-between;
+flex-wrap: wrap;
+list-style-type: none;
 }
 
 .footer .footer-links-list  li {
@@ -973,21 +980,21 @@ html, body {
 
 @-webkit-keyframes rotating {
     0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
     }
     100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
     }
-  }
-  @keyframes rotating {
+}
+@keyframes rotating {
     0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
     }
     100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
     }
-  }
+}
