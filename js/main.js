@@ -318,11 +318,13 @@ function updateDOMWithProfileData(data)
     //populate the repositories list element with repositories
     let repositoriesList = document.getElementById("repositories-list");
     let repositories = data.user.repositories.nodes;
-    for (let i = 0; i < data.user.repositories.totalCount; i++) {
+    for (let i = 0; i < 20; i++) {
         let repository = repositories[i];
+        console.log(i)
         if (repository == undefined) {
             continue;
         }
+        // console.log(repositoriesList)
         repositoriesList.append(generateRepositoryMarkup(repository));
     }
     //update network info
@@ -411,8 +413,7 @@ function getProfileData()
         'Authorization': 'Bearer ' + token,
         'Content-type': 'application/json',
     })
-    let body = '{ "query": "query { user(login:\\\"the-fanan\\\") { name url login bio avatarUrl followers { totalCount } following { totalCount } location email twitterUsername websiteUrl starredRepositories { totalCount } status { id emoji emojiHTML message} repositories(first: 20, orderBy: {field:UPDATED_AT, direction:DESC}) { totalCount nodes { updatedAt licenseInfo { name } viewerHasStarred description name url isPrivate forkCount stargazerCount primaryLanguage { id name color } owner { login } defaultBranchRef { name } } } } }" }';
-
+    let body = '{ "query": "query { user(login:\\\"ifebrand6\\\") { name url login bio avatarUrl followers { totalCount } following { totalCount } location email twitterUsername websiteUrl starredRepositories { totalCount } status { id emoji emojiHTML message} repositories(first: 20, orderBy: {field:UPDATED_AT, direction:DESC}) { totalCount nodes { updatedAt licenseInfo { name } viewerHasStarred description name url isPrivate forkCount stargazerCount primaryLanguage { id name color } owner { login } defaultBranchRef { name } } } } }" }';
     let result = new Promise((resolve, reject) => {
         fetch(url, {
             method: 'POST',
