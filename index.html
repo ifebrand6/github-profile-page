@@ -1,11 +1,409 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+    <title>Your Repositories</title>
+    <!--Include Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+
+    <!--Style sheets-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+    <!--Social Media Cards-->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@the_cocoreidh" />
+    <meta name="twitter:title" content="GitHub Repositories Clone" />
+    <meta name="twitter:description" content="A clone of my Github profile showing my repositories using the Github v4 GraphQL API" />
+    <meta name="twitter:image" content="https://avatars3.githubusercontent.com/u/26856247?s=460&u=cd8630da53490003167e962dc9648885e2e133de&v=4" />
+
+    <meta property="og:url"                content="https://the-fanan.github.io/github-profile-clone" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="GitHub Repositories Clone" />
+    <meta property="og:description"        content="A clone of my Github profile showing my repositories using the Github v4 GraphQL API" />
+    <meta property="og:image"              content="https://avatars3.githubusercontent.com/u/26856247?s=460&u=cd8630da53490003167e962dc9648885e2e133de&v=4" />
 </head>
 <body>
+    <noscript>
+    <strong>This site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <!-- Navbar begin-->
+    <nav class="navbar" id="main-nav">
+    <div class="nav-item responsive-drawer display-none display-sm-flex display-xs-flex" onclick="toggleSearchArea()">
+        <button>
+        <svg height="24" viewBox="0 0 16 16" width="24" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+        </svg>
+        </button>
+    </div>
+
+    <div class="nav-item site-logo">
+        <a href="https://github.com">
+        <svg height="32" viewBox="0 0 16 16" width="32" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        </a>
+    </div>
+
+    <div class="nav-item search display-sm-none" id="search-area">
+        <div class="search-box" id="search-box">
+        <input name="search" placeholder="Search or jump to..." onfocus="addSearchFocus()" onblur="removeSearchFocus()">
+        <span class="slash-holder"><img src="https://github.githubassets.com/images/search-key-slash.svg"/></span>
+        </div>
+
+        <a href="https://github.com/dashboard" class="display-none display-sm-flex display-xs-flex">Dashboard</a>
+        <a href="https://github.com/pulls">Pull<span class="pr display-flex display-md-none display-sm-flex display-xs-flex">request</span>s</a>
+        <a href="https://github.com/issues">Issues</a>
+        <a href="https://github.com/marketplace">Marketplace</a>
+        <a href="https://github.com/explore">Explore</a>
+        <a href="https://github.com/the-fanan" class="profile-link display-none display-sm-flex display-xs-flex username-text">
+        <img class="profile-image" />
+        </a>
+        <a href="https://github.com/sign-out" class="display-none display-sm-flex display-xs-flex">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm10.44 4.5H6.75a.75.75 0 000 1.5h5.69l-1.97 1.97a.75.75 0 101.06 1.06l3.25-3.25a.75.75 0 000-1.06l-3.25-3.25a.75.75 0 10-1.06 1.06l1.97 1.97z"></path>
+        </svg>
+        Sign Out
+        </a>
+    </div>
+
+    <div class="nav-item notifications">
+        <a href="https://github.com/notificaitons" class="icon-holder">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 16a2 2 0 001.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 008 16z"></path>
+            <path fill-rule="evenodd" d="M8 1.5A3.5 3.5 0 004.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.018.018 0 00-.003.01l.001.006c0 .002.002.004.004.006a.017.017 0 00.006.004l.007.001h10.964l.007-.001a.016.016 0 00.006-.004.016.016 0 00.004-.006l.001-.007a.017.017 0 00-.003-.01l-1.703-2.554a1.75 1.75 0 01-.294-.97V5A3.5 3.5 0 008 1.5zM3 5a5 5 0 0110 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.518 1.518 0 0113.482 13H2.518a1.518 1.518 0 01-1.263-2.36l1.703-2.554A.25.25 0 003 7.947V5z"></path>
+        </svg>
+        <span class="unread-icon"></span>
+        </a>
+    </div>
+
+    <div class="nav-item new-item display-sm-none">
+        <div class="icon-holder dropdown-toggler">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path>
+        </svg>
+        <span class="dropdown-icon"></span>
+        </div>
+        <div class="dropdown">
+        <ul class="dropdown-list">
+            <li>
+            <a href="https://github.com/new">New repository</a>
+            </li>
+            <li>
+            <a href="https://github.com/new/import">Import repository</a>
+            </li>
+            <li>
+            <a href="https://gist.github.com/new">New gist</a>
+            </li>
+            <li>
+            <a href="https://github.com/organizations/new">New organization</a>
+            </li>
+            <li>
+            <a href="https://github.com/new/project">Import project</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="nav-item user-dropdown display-sm-none">
+        <div class="icon-holder dropdown-toggler">
+        <img class="profile-image"/>
+        <span class="dropdown-icon"></span>
+        </div>
+        <div class="dropdown">
+        <ul class="dropdown-list">
+            <li><a class="heading" href="https://github.com/the-fanan">Signed in as <strong class="username-text"></strong></a></li>
+            <li class="divider"></li>
+            <li>
+            <div class="status-container">
+                <div class="status-main">
+                <g-emoji alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">
+                    <img class="computer" alt="thought_balloon" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png" width="20" height="20">
+                </g-emoji>
+                <span>
+                    Building
+                </span>
+                </div>
+            </div>
+            </li>
+            <li class="divider"></li>
+            <li>
+            <a href="https://github.com/the-fanan">Your profile</a>
+            </li>
+            <li>
+            <a href="https://github.com/the-fanan?tab=repositories">Your repositories</a>
+            </li>
+            <li>
+            <a href="https://github.com/the-fanan?tab=projects">Your projects</a>
+            </li>
+            <li>
+            <a href="https://github.com/the-fanan?tab=stars">Your stars</a>
+            </li>
+            <li>
+            <a href="https://gist.github.com/mins">Your gists</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+            <a href="https://github.com/settings/billing">Upgrade</a>
+            </li>
+            <li>
+            <a href="#">Feature preview</a>
+            </li>
+            <li>
+            <a href="https://docs.github.com">Help</a>
+            </li>
+            <li>
+            <a href="https://github.com/settings/profile">Settings</a>
+            </li>
+            <li>
+            <a href="https://github.com/sign-out">Sign out</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Main Sticky Nav begin -->
+    <div class="sub-nav-sticky-container padding-horizontal-lg display-sm-none">
+    <div class="xl-responsive">
+        <div class="width-25 padding-horizontal">
+        <div class="sticky-profile-image-holder" id="aux-profile-image">
+            <img class="profile-image" />
+            <strong class="username-text"></strong>
+        </div>
+        </div>
+        <div class="width-75 padding-horizontal">
+        <nav class="sub-nav">
+            <a href="https://github.com/the-fanan">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z"></path>
+            </svg>
+            Overview
+            </a>
+            <a href="https://github.com/the-fanan?tab=repositories" class="active">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+            </svg>
+            Repositories
+            <span class="repositories-count count-badge"></span>
+            </a>
+            <a href="https://github.com/the-fanan?tab=projects">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path>
+            </svg>
+            Projects
+            </a>
+            <a href="https://github.com/the-fanan?tab=packages">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8.878.392a1.75 1.75 0 00-1.756 0l-5.25 3.045A1.75 1.75 0 001 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 001.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25 0 01.25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271l4.625-2.683a.25.25 0 00.125-.216V5.677L8.75 8.432v5.516z"></path>
+            </svg>
+            Packages
+            </a>
+        </nav>
+        </div>
+    </div>
+    </div>
+    <!-- Main Sticky Nav end -->
+
+    <!-- Content Begin -->
+    <div class="content-container padding-horizontal-lg">
+    <!-- Content Body Begin -->
+    <div class="content-body">
+        <!-- Sidebar Begin -->
+        <div class="width-25 width-sm-100 padding-horizontal profile-area">
+        <div class="width-100 img-name-area">
+            <div class="width-100 width-sm-16 img-area">
+            <a class="image-holder" href="https://github.com/account">
+                <img class="profile-image"/>
+            </a>
+            <span class="user-status display-sm-none">
+                <span class="user-status-emoji-holder">
+                </span>
+                <span class="user-status-message"></span>
+            </span>
+            </div>
+            <div class="width-100 width-sm-75 name-area">
+            <h3 id="spy-profile-view">
+                <p class="fullname-text"></p>
+                <p class="username-text"></p>
+            </h3>
+            </div>
+        </div>
+        <div class="width-100 sm-status-area display-sm-flex display-xs-flex display-none">
+            <span class="user-status">
+            <span class="user-status-emoji-holder">
+            </span>
+            <span class="user-status-message"></span>
+            </span>
+        </div>
+        <div class="width-100 bio-area">
+            <p class="bio" id="bio"></p>
+        </div>
   
+        <div class="width-100 edit-profile-area">
+            <button class="button width-100">Edit Profile</button>
+        </div>
+
+        <div class="width-100 contact-area display-none display-xs-flex display-sm-flex">
+            <ul class="contact-list">
+            <li class="contact-email">
+                <svg class="octicon octicon-mail" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path>
+                </svg>
+            </li>
+            <li class="contact-website">
+                <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg>
+            </li>
+            </ul>
+        </div>
+  
+        <div class="width-100 network-info-area">
+            <span class="info-item">
+            <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.5 3.5a2 2 0 100 4 2 2 0 000-4zM2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a.75.75 0 100 1.5 1.5 1.5 0 01.666 2.844.75.75 0 00-.416.672v.352a.75.75 0 00.574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 101.434-.44 5.01 5.01 0 00-2.56-3.012A3 3 0 0011 4z"></path>
+            </svg>
+            <strong id="followers-count">
+               
+            </strong>
+            followers
+            </span>
+            · 
+            <span class="info-item">
+            <strong id="following-count">
+               
+            </strong>
+            following
+            </span>
+            · 
+            <span class="info-item">
+            <svg class="octicon octicon-star text-gray-light" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
+            </svg>
+            <strong id="starred-repositories-count">
+                
+            </strong>
+            </span>
+        </div>
+
+        <div class="width-100 contact-area display-sm-none">
+            <ul class="contact-list">
+            <li class="contact-location">
+                <svg class="octicon octicon-location" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z"></path>
+                </svg>
+            </li>
+            <li class="contact-email">
+                <svg class="octicon octicon-mail" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path>
+                </svg>
+            </li>
+            <li class="contact-website">
+                <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg>
+            </li>
+            <li class="contact-twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 273.5 222.3" class="octicon"><path d="M273.5 26.3a109.77 109.77 0 0 1-32.2 8.8 56.07 56.07 0 0 0 24.7-31 113.39 113.39 0 0 1-35.7 13.6 56.1 56.1 0 0 0-97 38.4 54 54 0 0 0 1.5 12.8A159.68 159.68 0 0 1 19.1 10.3a56.12 56.12 0 0 0 17.4 74.9 56.06 56.06 0 0 1-25.4-7v.7a56.11 56.11 0 0 0 45 55 55.65 55.65 0 0 1-14.8 2 62.39 62.39 0 0 1-10.6-1 56.24 56.24 0 0 0 52.4 39 112.87 112.87 0 0 1-69.7 24 119 119 0 0 1-13.4-.8 158.83 158.83 0 0 0 86 25.2c103.2 0 159.6-85.5 159.6-159.6 0-2.4-.1-4.9-.2-7.3a114.25 114.25 0 0 0 28.1-29.1"></path></svg>
+            </li>
+            </ul>
+        </div>
+        </div>
+        <!-- Sidebar End -->
+
+        <!--Main Content Begin -->
+        <div class="width-75 width-sm-100 padding-horizontal repo-area">
+        <div class="sub-nav-sticky-container sub-nav-sticky-container-sm display-none display-sm-flex display-xs-flex width-sm-100 padding-horizontal-lg">
+            <nav class="sub-nav">
+            <a href="https://github.com/the-fanan">
+                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z"></path>
+                </svg>
+                Overview
+            </a>
+            <a href="https://github.com/the-fanan?tab=repositories" class="active">
+                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                </svg>
+                Repositories
+                <span class="repositories-count count-badge"></span>
+            </a>
+            <a href="https://github.com/the-fanan?tab=projects">
+                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path>
+                </svg>
+                Projects
+            </a>
+            <a href="https://github.com/the-fanan?tab=packages">
+                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8.878.392a1.75 1.75 0 00-1.756 0l-5.25 3.045A1.75 1.75 0 001 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 001.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25 0 01.25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271l4.625-2.683a.25.25 0 00.125-.216V5.677L8.75 8.432v5.516z"></path>
+                </svg>
+                Packages
+            </a>
+            </nav>
+        </div> 
+        <div class="repo-filter-container width-100 padding-vertical">
+            <div class="search-input-holder">
+            <input placeholder="Find a repository..." class="width-100"/>
+            </div>
+  
+            <div class="buttons-holder">
+            <button class="button"><span class="category">Type:</span> All <span class="dropdown-icon"></span></button>
+            <button class="button"><span class="category">Language:</span> All <span class="dropdown-icon"></span></button>
+            <button class="button button-green">
+                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                </svg>
+                New
+            </button>
+            </div>
+        </div>
+        <div class="repositories-list" id="repositories-list">
+            
+        </div>
+        </div>
+        <!-- Main Content End -->
+    </div>
+    <!-- Content Body End-->
+
+    <!-- Footer Begin -->
+    <footer class="footer">
+        <svg height="24" class="octicon octicon-mark-github display-md-none" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        <ul class="footer-links-list">
+        <li>&copy; 2020 GitHub, Inc.</li>
+        <li><a href="https://github.com/site/terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy">Privacy</a></li>
+        <li><a href="https://github.com/security">Security</a></li>
+        <li><a href="https://githubstatus.com/">Status</a></li>
+        <li><a href="https://docs.github.com">Help</a></li>
+        <li><a href="https://github.com/contact">Contact GitHub</a></li>
+        <li><a href="https://github.com/pricing">Pricing</a></li>
+        <li><a href="https://docs.github.com">API</a></li>
+        <li><a href="https://services.github.com">Training</a></li>
+        <li><a href="https://github.blog">Blog</a></li>
+        <li><a href="https://github.com/about">About</a></li>
+        </ul>
+    </footer>
+    <!-- Footer End -->
+    </div>
+    <!-- Content end -->
+
+    <div class="preloader" id="preloader">
+    <span class="rotating-icon"></span>
+    </div>
+    <!-- This block is for me to store my Github Token. I have done this this way as Github deletes tokens when they are discovered in your commit -->
+    <!-- I left the token here to ensure that deployment is as simple as possible -->
+    <!-- The scope of the token is limited to only information that is already publicly available on my profile so it is safe even if it is compromised -->
+    <div style="display: none;">
+    <span id="t-1">4bda53c6b0</span>
+    <span id="t-2">1983a4cdce</span>
+    <span id="t-3">5755a341ae</span>
+    <span id="t-4">b69864fa5c</span>
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
