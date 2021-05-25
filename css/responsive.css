@@ -257,6 +257,10 @@
     .footer .footer-links-list {
         justify-content: center;
     }
+    .navbar {
+        width: 100%;
+    }
+
 }
 
 /******************************************************************************
@@ -405,7 +409,7 @@
 
     .repo-filter-container  .buttons-holder {
         position: relative;
-        width: 100%;
+        /* width: 100%; */
     }
 
     .repo-filter-container  .buttons-holder .button:last-child {
@@ -426,7 +430,7 @@
     }
     .query{
         width: 100%;
-    }
+    }   
 }
 
 

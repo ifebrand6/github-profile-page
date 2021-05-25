@@ -325,8 +325,7 @@ html, body {
     background-color: transparent;
     min-height: 28px;
     display: flex;
-    padding: 0 12px 0 12px;
-    margin-right: 9em;
+    padding: 0 76px 0 12px;
 }
 .navbar .nav-item.search .search-box span.slash-holder {
     display: flex;
@@ -592,7 +591,7 @@ html, body {
     font-size: 20px;
     font-weight: 700;
     margin: 0;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 .repositories-list .repository-main h3 a {
@@ -681,6 +680,7 @@ html, body {
     position: relative;
     flex-direction: column;
     top: -30px;
+    word-wrap: break-word;
 }
 
 .profile-area .img-name-area {
