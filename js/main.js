@@ -219,12 +219,13 @@ function RepositoryGenerator(repository)
     var heading = document.createElement('h3');
     heading.appendChild(headingAnchor);
     left.appendChild(heading);
-
     var description = document.createElement('p');
     description.classList.add('description');
     t = document.createTextNode(repository.description);
-    description.append(t);
-    left.appendChild(description);
+    if (repository.description != null) {
+        description.append(t);
+        left.appendChild(description);
+    }
 
     var info = document.createElement('div')
     info.classList.add("info");
@@ -357,16 +358,21 @@ function updateDOMWithFetchedUserData(data)
         }
     }
 
-    var contactTwitter = document.getElementsByClassName("contact-twitter");
-    for (var i = 0; i < contactTwitter.length; i++) {
-        if (contactTwitter[i].tagName !== undefined) {
-            var a = document.createElement('a')
-            a.setAttribute('href', "https://twitter.com/" + data.user.twitterUsername)
-            var t = document.createTextNode("@" + data.user.twitterUsername);
-            a.appendChild(t);
-            contactTwitter[i].appendChild(a)
+    var twitterUserName = data.user.twitterUsername
+    if (twitterUserName != null) {
+        var contactTwitter = document.getElementsByClassName("contact-twitter");
+        for (var i = 0; i < contactTwitter.length; i++) {
+            if (contactTwitter[i].tagName !== undefined) {
+                var a = document.createElement('a')
+                a.setAttribute('href', "https://twitter.com/" + data.user.twitterUsername)
+                var t = document.createTextNode("@" + data.user.twitterUsername);
+                a.appendChild(t);
+                contactTwitter[i].appendChild(a)
+            }
         }
+        return
     }
+    document.getElementsByClassName("contact-twitter")[0].remove()
 }
 
 /**
@@ -382,6 +388,12 @@ function elementInViewport (el) {
     );
 }
 
+function preventLinkFromDirection(params) {
+    document.querySelectorAll('.sub-nav > a').onclick = function(e) {
+        e.preventDefault();
+        console.log("hhd")
+        }
+}
 
 window.addEventListener('load', function () {
     document.querySelectorAll('.dropdown-toggler').forEach(item => {
@@ -405,5 +417,7 @@ window.addEventListener('load', function () {
             auxProfileImage.style.opacity = 1;
         }
     })
+    preventLinkFromDirection()
+
 })
 export {updateDOMWithFetchedUserData};
