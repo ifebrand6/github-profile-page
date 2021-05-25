@@ -284,20 +284,25 @@ function updateDOMWithFetchedUserData(data)
         }
     }
     //update status
-    var statusMessages = document.getElementsByClassName("user-status-message");
-    for (var i = 0; i < statusMessages.length; i++) {
-        if (statusMessages[i].tagName !== undefined) {
-            var t = document.createTextNode(data.user.status.message);
-            statusMessages[i].appendChild(t);
+    var status =  data.user.status
+    if (status != null) {
+        var statusMessages = document.getElementsByClassName("user-status-message");
+        for (var i = 0; i < statusMessages.length; i++) {
+            if (statusMessages[i].tagName !== undefined) {
+                var t = document.createTextNode(status.message);
+                statusMessages[i].appendChild(t);
+            }
+        }
+        var statusEmojiHolder = document.getElementsByClassName("user-status-emoji-holder");
+        for (var i = 0; i < statusEmojiHolder.length; i++) {
+            if (statusEmojiHolder[i].tagName !== undefined) {
+                var doc = new DOMParser().parseFromString(status.emojiHTML, 'text/html');
+                statusEmojiHolder[i].appendChild(doc.body);
+            }
         }
     }
-    var statusEmojiHolder = document.getElementsByClassName("user-status-emoji-holder");
-    for (var i = 0; i < statusEmojiHolder.length; i++) {
-        if (statusEmojiHolder[i].tagName !== undefined) {
-            var doc = new DOMParser().parseFromString(data.user.status.emojiHTML, 'text/html');
-            statusEmojiHolder[i].appendChild(doc.body);
-        }
-    }
+
+   
     //update bio
     var bio = document.getElementById("bio");
     var bioText = document.createTextNode(data.user.bio);

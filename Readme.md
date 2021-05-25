@@ -17,3 +17,9 @@ This challenge is to recreate Github profile page using GraphQL API, HTML, CSS a
 
 
 [LinkedIn](https://www.linkedin.com/in/udeogu-ifechukwu/)
+
+##Comment
+The solution was built using only vanila javascipt, HTML, CSS and GraphQl.
+I use mostly javascript modular desgin pattern in writing the core of the application.
+##Next Update
+The next update will use localStorage to save the fetched user data, so when the user refreshed the browser it will retain the information.

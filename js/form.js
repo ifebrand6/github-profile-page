@@ -30,19 +30,25 @@ window.addEventListener('load', function () {
                 body,
                 headers,
             })
-            .then((response) => response.json())
-            .then(function(data) {
-                console.log(data.data.user)
-                if (data.data.user === null) {
-                    document.getElementsByClassName('flash-error ')[0].style.display = 'block';
-                    submitBtn.value = 'View profile'
-                } else {
-                    inputPage.style.display = 'none';
-                    updateDOMWithFetchedUserData(data.data);
-                    resultPage.style.display = '';
+            .then((response) => response.json()).then(data => 
+                {
+                    let user_info  = data.data.user,
+                    user_data = data.data
+                    console.log(user_data)
+                    console.log(user_info)
+                    if (user_info.name === null) {
+                        let error_div = document.getElementsByClassName('flash-error ')[0]
+                        error_div.style.display = 'block';
+                        error_div.innerText = 'Something went wrong. Try again later';
+                        submitBtn.value = 'View Profile'
+                    } else {
+                        inputPage.style.display = 'none';
+                        resultPage.style.display = '';
+                        updateDOMWithFetchedUserData(user_data);
+                    }
                 }
-            })
-            .catch(function(error){
+                )
+             .catch(function(error){
                 let error_div = document.getElementsByClassName('flash-error ')[0]
                 error_div.style.display = 'block';
                 error_div.innerText = 'Something went wrong. Try again later';
