@@ -4,7 +4,10 @@ This challenge is to recreate Github profile page using GraphQL API, HTML, CSS a
 ## View
 ### [Link to GitHubPage](https://ifebrand6.github.io/github-profile-page/)
 
+## Input page
 ![Preview Image](https://ifebrand6.github.io/github-profile-page/images/preview1.png)
+
+## Result Page
 ![Preview Image](https://ifebrand6.github.io/github-profile-page/images/preview.png)
 ## Author
 [UDEOGU IFECHUKWU](https://meetife.software)
