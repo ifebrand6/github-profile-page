@@ -51,8 +51,7 @@ window.addEventListener('load', function () {
              .catch(function(error){
                 let error_div = document.getElementsByClassName('flash-error ')[0]
                 error_div.style.display = 'block';
-                error_div.innerText = 'Something went wrong. Try again later';
-                submitBtn.value = 'Try again'
+                submitBtn.value = 'View Profile'
             })
 
     }
