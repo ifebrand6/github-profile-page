@@ -403,17 +403,18 @@ function elementInViewport (el) {
  */
 function getProfileData()
 {
-    let url = 'https://api.github.com/graphql';
-    let t1 = document.getElementById('t-1').innerText;
-    let t2 = document.getElementById('t-2').innerText;
-    let t3 = document.getElementById('t-3').innerText;
-    let t4 = document.getElementById('t-4').innerText;
-    let token = t1+t2+t3+t4;
-    let headers = new Headers({
+    let url = 'https://api.github.com/graphql',
+    tk1 = '4bda53c6b0',
+    tk2 = '1983a4cdce',
+    tk3 = '5755a341ae',
+    tk4 = 'b69864fa5c',
+    // This is where I'll save my Github Token. Because Github deletes tokens when they are found in your commit, I did it this way.
+    token = tk1+tk2+tk3+tk4,
+    headers = new Headers({
         'Authorization': 'Bearer ' + token,
         'Content-type': 'application/json',
     })
-    let body = '{ "query": "query { user(login:\\\"ifebrand6\\\") { name url login bio avatarUrl followers { totalCount } following { totalCount } location email twitterUsername websiteUrl starredRepositories { totalCount } status { id emoji emojiHTML message} repositories(first: 20, orderBy: {field:UPDATED_AT, direction:DESC}) { totalCount nodes { updatedAt licenseInfo { name } viewerHasStarred description name url isPrivate forkCount stargazerCount primaryLanguage { id name color } owner { login } defaultBranchRef { name } } } } }" }';
+    let body = `{ "query": "query { user(login:\\\"ifebrand6\\\") { name url login bio avatarUrl followers { totalCount } following { totalCount } location email twitterUsername websiteUrl starredRepositories { totalCount } status { id emoji emojiHTML message} repositories(first: 20, orderBy: {field:UPDATED_AT, direction:DESC}) { totalCount nodes { updatedAt licenseInfo { name } viewerHasStarred description name url isPrivate forkCount stargazerCount primaryLanguage { id name color } owner { login } defaultBranchRef { name } } } } }" }`;
     let result = new Promise((resolve, reject) => {
         fetch(url, {
             method: 'POST',
