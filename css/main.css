@@ -611,6 +611,7 @@ html, body {
     color: #586069;
     font-size: 14px;
     word-break: break-word;
+    margin-top: 8px;
 }
 
 .repositories-list .repository-main .info {
@@ -628,9 +629,9 @@ html, body {
 .repositories-list .repository-main .info .info-item .language-color {
     display: inline-block;
     position: relative;
-    top: 2px;
-    width: 12px;
-    height: 12px;
+    top: 1px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: 1px solid rgba(27, 31, 35, .1);
     margin-right: 3px;
@@ -979,9 +980,7 @@ list-style-type: none;
     height: 10em;
 }
 
-.git{
-    display: none
-}
+
 .query .header {
     position: relative !important;
 }
@@ -1020,8 +1019,8 @@ main{
     letter-spacing: -.5px;
     margin-top: 0;
     margin-bottom: 0;
- }
- .flash-error {
+}
+.flash-error {
     padding: 15px 20px;
     margin: 0 auto 20px;
     font-size: 13px;
@@ -1102,6 +1101,7 @@ input.user-submit-btn {
     border-radius: 6px;
     appearance: none;
     box-shadow: 0 1px 0 rgb(27 31 35 / 10%);
+    border-color: rgb(24 27 31 / 15%);
 }
 @-webkit-keyframes rotating {
     0% {
